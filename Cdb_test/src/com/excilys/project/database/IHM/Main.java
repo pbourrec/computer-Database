@@ -1,19 +1,35 @@
 package com.excilys.project.database.IHM;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.excilys.project.database.dataType.*;
+import com.excilys.project.database.dataType.Computer;
+import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class Main {
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bonjour utilisateur");
 		System.out.println("Veuillez attendre la connexion au serveur...");
-		// ******************* CONNEXION A BDD SQL A FAIRE *************************
+		// ******************* CONNEXION A BDD SQL A FAIRE
+		// *************************
+		MysqlDataSource dataSource = new MysqlDataSource();
+		dataSource.setUser("root");
+		dataSource.setPassword("root");
+
+		dataSource.setServerName("localhost:3036");
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		String endOfSession = "";
 		String choice = "";
-		while(!endOfSession.equals("quit")) {
+		while (!endOfSession.equals("quit")) {
 
 			System.out.println("Que voulez vous faire : ");
 			System.out.println("1. Ajouter un ordinateur");
@@ -29,46 +45,59 @@ public class Main {
 
 			switch (choiceNumber) {
 			case "1":
-				System.out.println("*******************************************************************");
+				System.out
+						.println("*******************************************************************");
 				System.out.println("Quel sera le nom de l'ordinateur");
 				String computerName = sc.nextLine();
 
 				System.out.println("Quel sera le constructeur de l'ordinateur");
-				String computerManufacturer= sc.nextLine();
+				String computerManufacturer = sc.nextLine();
 
 				System.out.println("Date de mise en service de l'ordinateur");
 				String computerStartingDate = sc.nextLine();
-				
+
 				System.out.println("Date de mise en retraite de l'ordinateur");
 				String computerEndDate = sc.nextLine();
 
-				//			Computer newComputer = new Computer(computerName, computerManufacturer,(date) computerStartingDate,(date) computerEndDate);
+				// Computer newComputer = new Computer(computerName,
+				// computerManufacturer,(date) computerStartingDate,(date)
+				// computerEndDate);
 
-				//************   TEMPORAIRE TANT QUE DATE PAS REGLE *******************
-				Computer newComputer = new Computer(computerName, computerManufacturer);
+				// ************ TEMPORAIRE TANT QUE DATE PAS REGLE
+				// *******************
+				Computer newComputer = new Computer(computerName,
+						computerManufacturer);
 
-				System.out.println("Voulez vous bien créer l'ordinateur suivant : Y/N");
+				System.out
+						.println("Voulez vous bien créer l'ordinateur suivant : Y/N");
 				System.out.println("Nom : " + newComputer.computerName);
-				System.out.println("Nom du constructeur : "  + newComputer.computerManufacturer);
+				System.out.println("Nom du constructeur : "
+						+ newComputer.computerManufacturer);
 				choice = sc.nextLine();
 				if (choice.equals("Y")) {
-					//********************* Rajouter Computer a la database ******************
+					// ********************* Rajouter Computer a la database
+					// ******************
+					System.out.println("Ordinateur bien créé");
 
 				} else {
 					// *************** Supprimer le newcomputer **************
 				}
 				break;
 			case "2":
-				System.out.println("Fonctionnalité non disponible pour le moment");
+				System.out
+						.println("Fonctionnalité non disponible pour le moment");
 				break;
 			case "3":
-				System.out.println("Fonctionnalité non disponible pour le moment");
+				System.out
+						.println("Fonctionnalité non disponible pour le moment");
 				break;
 			case "4":
-				System.out.println("Fonctionnalité non disponible pour le moment");
+				System.out
+						.println("Fonctionnalité non disponible pour le moment");
 				break;
 			case "5":
-				System.out.println("Fonctionnalité non disponible pour le moment");
+				System.out
+						.println("Fonctionnalité non disponible pour le moment");
 				break;
 
 			case "6":
@@ -76,18 +105,17 @@ public class Main {
 				choice = sc.nextLine();
 				if (choice.equals("Y")) {
 					System.out.println("Au revoir utilisateur, a bientot");
-					endOfSession="quit";
+					endOfSession = "quit";
 
-				} else if(choice.equals("N")) {
+				} else if (choice.equals("N")) {
 				}
 				break;
 
-			default : 
+			default:
 				System.out.println("erreur de choix");
 				break;
 
 			}
-
 
 		}
 	}

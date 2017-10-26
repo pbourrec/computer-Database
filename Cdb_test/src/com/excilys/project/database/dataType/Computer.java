@@ -6,15 +6,15 @@ import java.sql.*;
 public class Computer {
 	
 	
-	public int id;
+	public long id;
 	public  String computerName;
-	public String computerManufacturer;
+	public long ManufacturerID;
 	
 	public Date dateIntroduced;
 	public Date dateDiscontinued;
 	
-	public String getComputerManufacturer() {
-		return computerManufacturer;
+	public long getComputerManufacturer() {
+		return ManufacturerID;
 	}
 
 	public String getComputerName() {
@@ -36,27 +36,34 @@ public class Computer {
 		this.dateDiscontinued = dateDiscontinued;
 		
 	}
-	public void setComputerManufacturer(String computerManufacturer) {
-		this.computerManufacturer = computerManufacturer;
+	public void setComputerManufacturer(long computerManufacturer) {
+		this.ManufacturerID = computerManufacturer;
 	}
 
 	public Computer(String computerName) {
 		super();
 		this.computerName = computerName;
 	}
-
-	public Computer(String computerName, String computerManufacturer, Date dateIntroduced,
+	
+	//constructeur si on a toutes les données
+	public Computer(String computerName, long computerManufacturer, Date dateIntroduced,
 			Date dateDiscontinued) {
 		super();
 		this.computerName = computerName;
-		this.computerManufacturer = computerManufacturer;
+		this.ManufacturerID = computerManufacturer;
 		this.dateIntroduced = dateIntroduced;
 		this.dateDiscontinued = dateDiscontinued;
 	}
-
-	public Computer(String computerName, String computerManufacturer) {
+	
+	//Constructeur si l'on n'a que le nom et le fabricant
+	/**
+	 * @deprecated
+	 * @param computerName
+	 * @param computerManufacturer
+	 */
+	public Computer(String computerName, long computerManufacturer) {
 		this.computerName = computerName;
-		this.computerManufacturer = computerManufacturer;
+		this.ManufacturerID = computerManufacturer;
 	}
 	
 		
